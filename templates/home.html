@@ -6,7 +6,7 @@
     <title>home page</title>
     <style>
         *{
-            background-color: aquamarine;
+            background-color: white
         }
         body{
             
@@ -15,15 +15,53 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        .profile{
+               background-color: rgb(193, 144, 242);
+            padding: 40px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            
+                
+        }
+         button {
+            background-color: rgb(193, 144, 242);
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #667eea;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    
     </style>
 </head>
 <body>
-    <h1>
-        this is the home page
-    </h1>
-    <a href="https://www.w3schools.com/css/css_accessibility.asp">touch here to go to the link</a>
-    <p>
-        hello
-    </p>
+    
+    <div class="profile">
+        <h2>
+            YOUR PROFILE :
+        </h2>
+        <form action="/logout" methods ="POST">
+            
+            <button type="submit" >signout</button>
+
+        </form>
+        <br>
+        <hr>
+
+    </div>
+    <br>
+    <div>
+        <a href="https://www.w3schools.com/css/css_accessibility.asp">touch here to go to the link</a>
+        <p>
+            hello
+        </p>
+    </div>
 </body>
 </html>

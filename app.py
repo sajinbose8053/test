@@ -17,9 +17,17 @@ def login():
         if username == USERNAME and password == PASSWORD:
             return render_template("home.html")
         else:
-            message = "Invalid Username or Password"
+            message = "Invalid Username or Password "
 
     return render_template("login.html", message=message)
+#-----------------------------------------------------------
 
+@app.route("/logout", methods=["POST"])
+def logout():
+    return redirect(url_for("login"))
+
+#***********************************************************
 if __name__ == "__main__":
     app.run(debug=True)
+
+    #<!--sfdnijhbd-->
