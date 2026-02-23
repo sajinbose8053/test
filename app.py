@@ -15,13 +15,16 @@ def init_db():
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
+        email TEXT,
+        phone TEXT,
         password TEXT
+                    
     )
     """)
     
-    # Insert sample user
-    cursor.execute("INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)", 
-                   ("admin", "1234"))
+    # Insert sample user                                                                     #  \
+    #cursor.execute("INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)",          # |------this is the data thatis stored in database... 
+     #             ("admin", "1234"))                                                          #/
     
     conn.commit()
     conn.close()
@@ -29,15 +32,50 @@ def init_db():
 init_db()   #this is the data base that  was created by sql lite......
 '''
 # Simple demo credentials
-USERNAME = "admin"
+USERNAME = "admin"                   ----->this is  used to save name and passwd in variable whotout using data base
 PASSWORD = "1234"
 '''
-# -------- Login --------
+#--------------------------------------------
+
+@app.route("/")
+def index():
+    return redirect(url_for("register"))
+
+#-----------------------------------
+# rejesteration Route
+#-----------------------------------
+@app.route("/register",methods = ["GET","POST"])
+def register():
+    error = None
+    if request.method == "POST":
+        username = request.form["username"]
+        email = request.form["email"]
+        phone = request.form["phone"]
+        password = request.form["password"]
+
+        conn = sqlite3.connect("users.db")
+        cursor = conn.cursor()
+
+        try :
+            cursor.execute("""
+            INSERT INTO users (username, email, phone, password)
+            VALUES (?, ?, ?, ?)
+            """, (username, email, phone, password))
+
+            conn.commit()
+            conn.close()
+
+            return redirect(url_for("login"))
+        except:
+            error = "user name already exist"
+    return render_template("register.html", error=error)
+
 # -----------------------------
 # Login Route
 # -----------------------------
-@app.route("/", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    error = None
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -53,17 +91,27 @@ def login():
             session["username"] = username
             return redirect(url_for("home"))
         else:
-            return "Invalid Username or Password"
+             error =  "Invalid Username or Password"
 
-    return render_template("login.html")
+    return render_template("login.html" , error=error)
 # -----------------------------
 # Home Route
 # -----------------------------
 @app.route("/home")
 def home():
     if "username" in session:
-        return render_template("home.html", user=session["username"])
-    return redirect(url_for("login"))
+        username = session['username']
+
+        conn = sqlite3.connect("users.db")
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT username, email, phone FROM users WHERE username=?", (username,))# '''(session["username"],)'''
+        user = cursor.fetchone()
+
+        conn.close()
+        return render_template("home.html", user=user )
+    else:
+        return redirect(url_for("login"))
 
 # -----------------------------
 # Logout Route
