@@ -6,65 +6,41 @@
     <title>home page</title>
     <style>
         *{
-            background-color: white
-        }
-        body{
-            
-            background-image: url("image/image.webp");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .profile{
-               background-color: rgb(193, 144, 242);
-            padding: 40px;
-            border-radius: 10px;
-            width: 350px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            
-                
-        }
-         button {
-            background-color: rgb(193, 144, 242);
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background: #667eea;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
+            background: #414040;
+            color: rgb(178, 190, 199);
         }
     
     </style>
 </head>
 <body>
-    
+    <center>
     <div class="profile">
         <h2>
-            YOUR PROFILE : <br>
-            {{ username }}
+            YOUR PROFILE : {{username}}
         </h2>
         <a href="/logout">
-            <button type="button">signout</button>
+            <button type="button">Lougout</button>
         </a>
-        
-
         </form>
+        </center>
         <br>
-        <hr>
-
     </div>
+    <hr>
+    <center>
+        <table border="2" cellpadding="10">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>phone</th>
+            </tr>
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+            </tr>
+        </table>
+    </center>
     <br>
-    <div>
-        <a href="https://www.w3schools.com/css/css_accessibility.asp">touch here to go to the link</a>
-        <p>
-            hello
-        </p>
-    </div>
 </body>
 </html>
 <!--hello0-->
