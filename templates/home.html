@@ -45,11 +45,13 @@
     
     <div class="profile">
         <h2>
-            YOUR PROFILE :
+            YOUR PROFILE : <br>
+            {{ username }}
         </h2>
-        <form action="/logout" methods ="POST">
-            
-            <button type="submit" >signout</button>
+        <a href="/logout">
+            <button type="button">signout</button>
+        </a>
+        
 
         </form>
         <br>
