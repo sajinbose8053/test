@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registeration form</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            
+            color: brown;
+        }
+        .reg_container{
+            align-content:flex-end;
+            background-color: aqua;
+            border-radius:1cm;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <div class="reg_container">
+    <h2>
+        ENTER YOUR DETAILS TO REGISTER
+    </h2>
+    <form action="/register" method="POST">
+        <input type="text" name="username" placeholder="username" id="" required> <br> <br>
+        <input type="email" name="email" placeholder="enter your email" id="" required><br><br>
+        <input type="number" name="phone" placeholder="enter ur ph no : " id="" required> <br> <br>
+        <input type="password" name="password" placeholder="enter ur passwrod" id="" required> <br> <br>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <input type="submit" name="subnit" id="">
+
+    </form>
+    <a href="/login">Already have an account ? login</a>
+    </div>
+    </center>
+    
+</body>
+</html>
