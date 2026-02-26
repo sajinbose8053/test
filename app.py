@@ -15,16 +15,16 @@ def init_db():
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
-        email TEXT,
+        email TEXT UNIQUE,
         phone TEXT,
-        password TEXT
+        password TEXT 
                     
     )
     """)
     
-    # Insert sample user                                                                     #  \
-    #cursor.execute("INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)",          # |------this is the data thatis stored in database... 
-     #             ("admin", "1234"))                                                          #/
+    # Insert sample user                                                                       \
+    #cursor.execute("INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)",           |------this is the data thatis stored in database... 
+     #             ("admin", "1234"))                                                          /
     
     conn.commit()
     conn.close()
@@ -67,7 +67,7 @@ def register():
 
             return redirect(url_for("login"))
         except:
-            error = "user name already exist"
+            error = "username or email already exist"
     return render_template("register.html", error=error)
 
 # -----------------------------
