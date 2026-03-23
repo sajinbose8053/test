@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home page</title>
     <style>
-      
+        .navbar{
+            display: flex;
+            margin-left: 20px;
+            margin-right: 20px;
+            justify-content: center;
+            padding: 30px;
+            
+        }
+      .navbar input{
+        width: 33%;
+        padding: 8px;
+      }
+      .navbar a {
+        margin-left: 15px;
+      }
          body {
                 margin: 0;
                 padding: 0;
@@ -88,17 +102,14 @@
     </style>
 </head>
 <body>
-    <center>
-    <div class="profile">
-        <h2>
-            YOUR PROFILE : {{username}}
-        </h2>
-        </form>
-        </center>
-
+    <div class="navbar">
+        <input type="text" placeholder="search">
+        <a href="login">login</a>
+        <a href="cart">cart</a>
+    </div>
         <div class="container">
 
-        <!-- Profile Section -->
+        <!-- Profile Section  -->
         <div class="profile-card">
             <div class="profile-circle">
                 {{ user[0][0] | upper }}
@@ -110,7 +121,7 @@
         </a>
         </div>
 
-        <!-- User Data Table -->
+        <!-- User Data Table   -->
         <div class="data-card">
             <h3>Your Details</h3>
             <table>
@@ -133,6 +144,7 @@
 
         <br>
     </div>
+    <!--
     <hr>
     <center>
         <table border="2" cellpadding="10">
@@ -150,6 +162,7 @@
         </table>
     </center>
     <br>
+    -->
 </body>
 </html>
 <!--hello0-->
